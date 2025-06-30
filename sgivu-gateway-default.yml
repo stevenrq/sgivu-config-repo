@@ -1,0 +1,56 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: sgivu-auth
+              uri: lb://sgivu-auth
+              predicates:
+                - Path=/v1/sgivu-auth/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: sgivuAuthCircuitBreaker
+                    fallbackUri: forward:/fallback/auth
+            - id: sgivu-user
+              uri: lb://sgivu-user
+              predicates:
+                - Path=/v1/users/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: sgivuUserCircuitBreaker
+                    fallbackUri: forward:/fallback/user
+  reactor:
+    context-propagation: auto
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: never
+  tracing:
+    sampling:
+      probability: 0.1
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
