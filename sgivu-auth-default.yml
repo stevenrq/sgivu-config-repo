@@ -1,0 +1,56 @@
+spring:
+  jpa:
+    open-in-view: false
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
+
+config:
+  base-url:
+    endpoint:
+      sgivu-user: ${SGIVU_USER_URL:http://sgivu-user}
+
+server:
+  port: ${PORT:9000}
+
+# Clave secreta para la comunicación segura entre servicios
+service:
+  internal:
+    secret-key: ${SERVICE_INTERNAL_SECRET_KEY}
+
+# Configuración del JWT para la firma de tokens
+sgivu:
+  jwt:
+    keystore:
+      location: ${JWT_KEYSTORE_LOCATION}
+      password: ${JWT_KEYSTORE_PASSWORD}
+    key:
+      alias: ${JWT_KEY_ALIAS}
+      password: ${JWT_KEY_PASSWORD}
+
+client:
+  angular-client:
+    url: ${ANGULAR_APP_URL:http://localhost:4200}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: never
+  tracing:
+    sampling:
+      probability: 0.1
+  zipkin:
+    tracing:
+      endpoint: http://sgivu-zipkin:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO

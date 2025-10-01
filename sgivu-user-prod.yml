@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_USER_DB_HOST}:${PROD_USER_DB_PORT}/${PROD_USER_DB_NAME}
+    username: ${PROD_USER_DB_USERNAME}
+    password: ${PROD_USER_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
