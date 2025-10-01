@@ -10,6 +10,9 @@ eureka:
       defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
 
 config:
+  issuer-url:
+    endpoint:
+      sgivu-auth: ${ISSUER_URL:http://127.0.0.1:9000}
   base-url:
     endpoint:
       sgivu-auth: ${SGIVU_AUTH_URL:http://sgivu-auth}
