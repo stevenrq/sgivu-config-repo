@@ -15,7 +15,7 @@ config:
       sgivu-auth: ${ISSUER_URL:http://127.0.0.1:9000}
   base-url:
     endpoint:
-      sgivu-auth: ${SGIVU_AUTH_URL:http://sgivu-auth}
+      sgivu-auth: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
 
 server:
   port: ${PORT:0}
