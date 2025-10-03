@@ -15,7 +15,7 @@ config:
       sgivu-auth: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
 
 server:
-  port: ${PORT:0}
+  port: ${PORT:8081}
 
 # Clave secreta para la comunicación segura entre servicios
 service:
