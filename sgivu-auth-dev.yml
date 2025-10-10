@@ -7,6 +7,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+  profiles: dev
 
 angular-client:
   url: ${DEV_ANGULAR_APP_URL}
