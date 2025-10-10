@@ -7,7 +7,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-  profiles: ${DEV_SPRING_PROFILES:prod}
 
 angular-client:
   url: ${PROD_ANGULAR_APP_URL}

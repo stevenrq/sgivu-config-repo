@@ -1,2 +1,0 @@
-spring:
-  profiles: ${DEV_SPRING_PROFILES:prod}
