@@ -7,7 +7,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-  profiles: prod
+  profiles: ${DEV_SPRING_PROFILES:prod}
 
 management:
   endpoints:

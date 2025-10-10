@@ -1,2 +1,2 @@
 spring:
-  profiles: dev
+  profiles: ${DEV_SPRING_PROFILES:dev}

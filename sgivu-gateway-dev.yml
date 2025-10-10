@@ -1,5 +1,5 @@
 spring:
-  profiles: dev
+  profiles: ${DEV_SPRING_PROFILES:dev}
 
 angular-client:
   url: ${DEV_ANGULAR_APP_URL}
