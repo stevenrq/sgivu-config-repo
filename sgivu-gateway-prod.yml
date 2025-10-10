@@ -1,0 +1,2 @@
+angular-client:
+  url: ${PROD_ANGULAR_APP_URL}

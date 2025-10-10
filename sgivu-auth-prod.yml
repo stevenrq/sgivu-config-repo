@@ -8,6 +8,9 @@ spring:
     hibernate:
       ddl-auto: validate
 
+angular-client:
+  url: ${PROD_ANGULAR_APP_URL}
+
 management:
   endpoints:
     web:

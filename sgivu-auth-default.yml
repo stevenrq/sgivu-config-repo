@@ -18,9 +18,6 @@ services:
 issuer:
   url: ${ISSUER_URL:http://sgivu-auth:9000}
 
-angular-client:
-  url: ${ANGULAR_APP_URL:http://localhost:4200}
-
 server:
   port: ${PORT:9000}
 
