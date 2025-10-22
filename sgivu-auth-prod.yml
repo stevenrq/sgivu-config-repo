@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_AUTH_DB_HOST:host.docker.internal}:${PROD_AUTH_DB_PORT:5432}/${PROD_AUTH_DB_NAME}
+    username: ${PROD_AUTH_DB_USERNAME}
+    password: ${PROD_AUTH_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+angular-client:
+  url: ${PROD_ANGULAR_APP_URL}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
