@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://${DEV_VEHICLE_DB_HOST:host.docker.internal}:${DEV_VEHICLE_DB_PORT:5432}/${DEV_VEHICLE_DB_NAME}
+    username: ${DEV_VEHICLE_DB_USERNAME}
+    password: ${DEV_VEHICLE_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
