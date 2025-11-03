@@ -18,6 +18,11 @@ services:
 server:
   port: ${PORT:8083}
 
+# Clave secreta para la comunicación segura entre servicios
+service:
+  internal:
+    secret-key: "${SERVICE_INTERNAL_SECRET_KEY}"
+
 management:
   endpoints:
     web:
