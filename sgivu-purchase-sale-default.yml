@@ -14,6 +14,15 @@ services:
     sgivu-auth:
       name: sgivu-auth
       url: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
+    sgivu-client:
+      name: sgivu-client
+      url: ${SGIVU_CLIENT_URL:http://sgivu-client:8082}
+    sgivu-user:
+      name: sgivu-user
+      url: ${SGIVU_USER_URL:http://sgivu-user:8081}
+    sgivu-vehicle:
+      name: sgivu-vehicle
+      url: ${SGIVU_VEHICLE_URL:http://sgivu-vehicle:8083}
 
 server:
   port: ${PORT:8084}
