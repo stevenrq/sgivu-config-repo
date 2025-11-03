@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_PURCHASE_SALE_DB_HOST}:${PROD_PURCHASE_SALE_DB_PORT}/${PROD_PURCHASE_SALE_DB_NAME}
+    username: ${PROD_PURCHASE_SALE_DB_USERNAME}
+    password: ${PROD_PURCHASE_SALE_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
