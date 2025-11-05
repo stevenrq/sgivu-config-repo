@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DEV_PURCHASE_SALE_DB_HOST:host.docker.internal}:${DEV_PURCHASE_SALE_DB_PORT:5432}/${DEV_PURCHASE_SALE_DB_NAME}
+    username: ${DEV_PURCHASE_SALE_DB_USERNAME}
+    password: ${DEV_PURCHASE_SALE_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
