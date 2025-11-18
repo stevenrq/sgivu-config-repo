@@ -12,6 +12,8 @@ spring:
 aws:
   s3:
     vehicles-bucket: ${AWS_VEHICLES_BUCKET}
+    # Origenes permitidos para las solicitudes directas al bucket (CORS S3)
+    allowed-origins: ${AWS_S3_ALLOWED_ORIGINS:http://localhost:4200,https://localhost:4200}
   access:
     key: ${AWS_ACCESS_KEY}
   secret:
