@@ -1,6 +1,22 @@
 spring:
   jpa:
     open-in-view: false
+  destination:
+    folder: ./src/main/resources/static/images/vehicles
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+# AWS Config
+aws:
+  s3:
+    vehicles-bucket: ${AWS_VEHICLES_BUCKET}
+  access:
+    key: ${AWS_ACCESS_KEY}
+  secret:
+    key: ${AWS_SECRET_KEY}
+  region: ${AWS_REGION}
 
 eureka:
   instance:
@@ -41,3 +57,6 @@ management:
 logging:
   level:
     root: INFO
+    software:
+      amazon:
+        awssdk: info
