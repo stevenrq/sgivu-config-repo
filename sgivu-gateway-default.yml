@@ -1,0 +1,47 @@
+# sgivu-gateway (default)
+#
+# Variables de entorno clave:
+# - EUREKA_URL: URL del Eureka Server para discovery (`defaultZone`).
+# - SGIVU_AUTH_URL: URL del Authorization Server para validar JWT.
+# - (prod) angular-client.url se define en `sgivu-gateway-prod.yml` para CORS.
+
+spring:
+  reactor:
+    context-propagation: auto
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
+
+services:
+  map:
+    sgivu-auth:
+      name: sgivu-auth
+      url: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
+
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: never
+  tracing:
+    sampling:
+      probability: 0.1
+  zipkin:
+    tracing:
+      endpoint: http://sgivu-zipkin:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+
+# Nota: Para habilitar CORS hacia el frontend, configurar `angular-client.url` en el perfil prod.
