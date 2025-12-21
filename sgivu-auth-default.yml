@@ -13,7 +13,7 @@ spring:
   session:
     store-type: jdbc
     jdbc:
-      initialize-schema: always
+      initialize-schema: never
       table-name: SPRING_SESSION
       cleanup-cron: 0 */15 * * * *
 
