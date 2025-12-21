@@ -10,6 +10,12 @@
 spring:
   jpa:
     open-in-view: false
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: never
+      table-name: SPRING_SESSION
+      cleanup-cron: 0 */15 * * * *
 
 eureka:
   instance:

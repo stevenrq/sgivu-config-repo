@@ -7,6 +7,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+  session:
+    timeout: 15m
 
 angular-client:
   url: ${DEV_ANGULAR_APP_URL}
