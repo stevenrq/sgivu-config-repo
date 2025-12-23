@@ -3,11 +3,36 @@
 # Variables de entorno clave:
 # - EUREKA_URL: URL del Eureka Server para discovery (`defaultZone`).
 # - SGIVU_AUTH_URL: URL del Authorization Server para validar JWT.
+# - SGIVU_GATEWAY_SECRET: secreto del cliente OAuth2 del gateway (BFF).
 # - (prod) angular-client.url se define en `sgivu-gateway-prod.yml` para CORS.
 
 spring:
   reactor:
     context-propagation: auto
+  security:
+    oauth2:
+      client:
+        registration:
+          sgivu-gateway:
+            provider: sgivu-auth
+            client-id: sgivu-gateway
+            client-secret: ${SGIVU_GATEWAY_SECRET}
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+              - phone
+              - address
+              - offline_access
+              - api
+              - read
+              - write
+        provider:
+          sgivu-auth:
+            issuer-uri: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
 
 eureka:
   instance:
@@ -43,5 +68,4 @@ management:
 logging:
   level:
     root: INFO
-
 # Nota: Para habilitar CORS hacia el frontend, configurar `angular-client.url` en el perfil prod.
