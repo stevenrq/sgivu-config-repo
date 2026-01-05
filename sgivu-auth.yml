@@ -4,6 +4,8 @@
 # - EUREKA_URL: URL del Eureka Server para discovery.
 # - SGIVU_USER_URL: URL interna del servicio de usuarios.
 # - ISSUER_URL: URL pública del Authorization Server (issuer OIDC).
+# - SGIVU_GATEWAY_URL: URL pública del gateway (BFF) usada como redirect URI.
+# - SGIVU_GATEWAY_SECRET: secreto del cliente OAuth2 del gateway (BFF).
 # - SERVICE_INTERNAL_SECRET_KEY: clave para `X-Internal-Service-Key` (llamadas internas a los servicios).
 # - JWT_KEYSTORE_* y JWT_KEY_*: credenciales del keystore para firmar JWT.
 
@@ -32,6 +34,10 @@ services:
 
 issuer:
   url: ${ISSUER_URL:http://sgivu-auth:9000}
+
+gateway-client:
+  url: ${SGIVU_GATEWAY_URL:http://sgivu-gateway:8080}
+  secret: ${SGIVU_GATEWAY_SECRET}
 
 server:
   port: ${PORT:9000}

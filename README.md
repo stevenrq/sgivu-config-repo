@@ -13,34 +13,34 @@ Repositorio centralizado de los archivos YAML que el Spring Cloud Config Server 
 ## Estructura del Repositorio
 
 ```text
-├── sgivu-auth-default.yml
+├── sgivu-auth.yml
 ├── sgivu-auth-dev.yml
 ├── sgivu-auth-prod.yml
-├── sgivu-client-default.yml
+├── sgivu-client.yml
 ├── sgivu-client-dev.yml
 ├── sgivu-client-prod.yml
-├── sgivu-discovery-default.yml
+├── sgivu-discovery.yml
 ├── sgivu-discovery-dev.yml
 ├── sgivu-discovery-prod.yml
-├── sgivu-gateway-default.yml
+├── sgivu-gateway.yml
 ├── sgivu-gateway-dev.yml
 ├── sgivu-gateway-prod.yml
-├── sgivu-purchase-sale-default.yml
+├── sgivu-purchase-sale.yml
 ├── sgivu-purchase-sale-dev.yml
 ├── sgivu-purchase-sale-prod.yml
-├── sgivu-user-default.yml
+├── sgivu-user.yml
 ├── sgivu-user-dev.yml
 ├── sgivu-user-prod.yml
-├── sgivu-vehicle-default.yml
+├── sgivu-vehicle.yml
 ├── sgivu-vehicle-dev.yml
 └── sgivu-vehicle-prod.yml
 ```
 
-Cada archivo corresponde a la configuración de un microservicio y entorno específicos. Spring Cloud Config usa el sufijo (`-dev`, `-prod`) para resolver la configuración según el profile activo.
+Cada archivo corresponde a la configuración de un microservicio y entorno específicos. Spring Cloud Config usa el nombre base (`{application}.yml`) para la configuración común y los sufijos (`-dev`, `-prod`) para resolver la configuración según el profile activo.
 
 ## Configuración
 
-- Usa `default` para valores comunes y sobrescribe solo diferencias en `dev` o `prod`.
+- Usa el archivo base (sin sufijo de perfil) para valores comunes y sobrescribe solo diferencias en `dev` o `prod`.
 - Variables sensibles deben definirse con placeholders `${VAR_NAME:default}` y resolverse desde `.env` o secretos externos.
 - Respeta las claves de Spring (`spring.application.name`, `server.port`, etc.) para evitar conflictos.
 

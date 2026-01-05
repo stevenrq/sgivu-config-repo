@@ -2,9 +2,9 @@
 
 ## Estructura del Proyecto y Módulos
 
-- YAML en raíz: `sgivu-<servicio>-<perfil>.yml` (auth, client, discovery, gateway, purchase-sale, user, vehicle; perfiles default/dev/prod). Pon valores comunes en `-default` y sobrescribe solo lo que cambia por entorno.
+- YAML en raíz: `sgivu-<servicio>[-perfil].yml` (auth, client, discovery, gateway, purchase-sale, user, vehicle; perfiles dev/prod). Pon valores comunes en el archivo base `{application}.yml` y sobrescribe solo lo que cambia por entorno en `{application}-dev.yml` o `{application}-prod.yml`.
 - Diagramas en `../sgivu/docs/diagrams/01-system-architecture.puml`; actualízalos si cambian componentes o dependencias.
-- Al agregar un servicio, respeta el patrón y crea al menos `-default` para evitar faltas de configuración al arrancar.
+- Al agregar un servicio, respeta el patrón y crea al menos el archivo base `{application}.yml` para evitar faltas de configuración al arrancar.
 
 ## Comandos de Build, Pruebas y Desarrollo
 
@@ -18,7 +18,7 @@
 - YAML: indentación de 2 espacios, sin tabs; claves en minúsculas; convención de Spring (`spring.application.name`, `server.port`, `spring.datasource.*`).
 - Tokens o secretos siempre como placeholders `${VAR_NAME:default}`; no se versionan secretos reales.
 - Mantén URLs, puertos y timeouts alineados entre entornos; sobrescribe solo si un entorno difiere.
-- Al agregar propiedades, refleja las claves en `-default`, `-dev` y `-prod` con valores específicos para evitar ausencias.
+- Al agregar propiedades, refleja las claves en el archivo base, `-dev` y `-prod` con valores específicos para evitar ausencias.
 
 ## Guía de Pruebas
 
@@ -40,4 +40,4 @@
 
 ## Notas Específicas del Servicio
 
-- Replica cambios transversales en `-default`, `-dev` y `-prod` para evitar configuraciones incompletas al arrancar servicios.
+- Replica cambios transversales en el archivo base, `-dev` y `-prod` para evitar configuraciones incompletas al arrancar servicios.
