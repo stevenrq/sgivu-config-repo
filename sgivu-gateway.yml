@@ -7,6 +7,14 @@
 # - (prod) angular-client.url se define en `sgivu-gateway-prod.yml` para CORS.
 
 spring:
+  session:
+    store-type: redis
+    redis:
+      namespace: spring:session:sgivu-gateway
+  data:
+    redis:
+      host: ${REDIS_HOST:sgivu-redis}
+      port: ${REDIS_PORT:6379}
   reactor:
     context-propagation: auto
   security:
