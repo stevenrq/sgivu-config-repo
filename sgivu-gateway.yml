@@ -15,6 +15,7 @@ spring:
     redis:
       host: ${REDIS_HOST:sgivu-redis}
       port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
   reactor:
     context-propagation: auto
   security:
