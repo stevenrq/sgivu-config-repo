@@ -18,6 +18,8 @@ spring:
       initialize-schema: never
       table-name: SPRING_SESSION
       cleanup-cron: 0 */15 * * * *
+      flush-mode: on_save
+      save-mode: on_get_attribute
 
 eureka:
   instance:
