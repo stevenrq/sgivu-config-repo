@@ -58,6 +58,8 @@ services:
 
 server:
   port: ${PORT:8080}
+  # Procesar headers X-Forwarded-* de Nginx para construir URLs correctamente
+  forward-headers-strategy: framework
 
 management:
   endpoints:
