@@ -43,6 +43,8 @@ gateway-client:
 
 server:
   port: ${PORT:9000}
+  # Procesar headers X-Forwarded-* de Nginx para construir URLs correctamente
+  forward-headers-strategy: framework
 
 # Clave secreta para la comunicación segura entre servicios
 service:
