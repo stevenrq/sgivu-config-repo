@@ -7,6 +7,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    # En dev, habilita baseline para DBs existentes y limpia antes de migrar (solo dev!)
+    baseline-on-migrate: true
+    clean-disabled: false
   session:
     timeout: 15m
 
