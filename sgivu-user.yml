@@ -1,17 +1,9 @@
-# sgivu-user (default)
-#
-# Variables de entorno clave:
-# - EUREKA_URL: URL del Eureka Server para discovery.
-# - SGIVU_AUTH_URL: issuer para validar tokens JWT.
-# - SERVICE_INTERNAL_SECRET_KEY: clave usada por `X-Internal-Service-Key` en endpoints internos.
-
 spring:
   jpa:
     open-in-view: false
   flyway:
     enabled: true
     locations: classpath:db/migration
-    # baseline-on-migrate: true para DBs existentes con schema ya creado
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
     baseline-version: 0
     validate-on-migrate: true
@@ -32,7 +24,6 @@ services:
 server:
   port: ${PORT:8081}
 
-# Clave secreta para la comunicación segura entre servicios
 service:
   internal:
     secret-key: "${SERVICE_INTERNAL_SECRET_KEY}"

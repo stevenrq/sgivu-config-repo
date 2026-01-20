@@ -14,11 +14,9 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 
-# AWS Config
 aws:
   s3:
     vehicles-bucket: ${AWS_VEHICLES_BUCKET}
-    # Origenes permitidos para las solicitudes directas al bucket (CORS S3)
     allowed-origins: ${AWS_S3_ALLOWED_ORIGINS:http://localhost:4200,https://localhost:4200}
   access:
     key: ${AWS_ACCESS_KEY}
@@ -42,7 +40,6 @@ services:
 server:
   port: ${PORT:8083}
 
-# Clave secreta para la comunicación segura entre servicios
 service:
   internal:
     secret-key: "${SERVICE_INTERNAL_SECRET_KEY}"
