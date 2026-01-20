@@ -8,7 +8,6 @@ spring:
     hibernate:
       ddl-auto: validate
   flyway:
-    # En prod, NUNCA permitir clean ni baseline automático sin supervisión
     clean-disabled: true
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
 
