@@ -4,7 +4,6 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
-    # baseline-on-migrate: true para DBs existentes con schema ya creado
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
     baseline-version: 0
     validate-on-migrate: true
@@ -34,7 +33,6 @@ services:
 server:
   port: ${PORT:8084}
 
-# Clave secreta para la comunicación segura entre servicios
 service:
   internal:
     secret-key: "${SERVICE_INTERNAL_SECRET_KEY}"

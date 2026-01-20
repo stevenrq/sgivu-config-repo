@@ -1,11 +1,3 @@
-# sgivu-gateway (default)
-#
-# Variables de entorno clave:
-# - EUREKA_URL: URL del Eureka Server para discovery (`defaultZone`).
-# - SGIVU_AUTH_URL: URL del Authorization Server para validar JWT.
-# - SGIVU_GATEWAY_SECRET: secreto del cliente OAuth2 del gateway (BFF).
-# - (prod) angular-client.url se define en `sgivu-gateway-prod.yml` para CORS.
-
 spring:
   session:
     store-type: redis
@@ -58,7 +50,6 @@ services:
 
 server:
   port: ${PORT:8080}
-  # Procesar headers X-Forwarded-* de Nginx para construir URLs correctamente
   forward-headers-strategy: framework
 
 management:
@@ -79,4 +70,3 @@ management:
 logging:
   level:
     root: INFO
-# Nota: Para habilitar CORS hacia el frontend, configurar `angular-client.url` en el perfil prod.
