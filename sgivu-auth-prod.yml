@@ -21,3 +21,7 @@ management:
     web:
       exposure:
         include: health, info, prometheus
+
+openapi:
+  server:
+    url: ${OPENAPI_SERVER_URL}
