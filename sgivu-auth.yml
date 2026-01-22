@@ -71,3 +71,8 @@ management:
 logging:
   level:
     root: INFO
+
+springdoc:
+  swagger-ui:
+    url: /docs/auth/v3/api-docs
+    configUrl: /docs/auth/v3/api-docs/swagger-config
