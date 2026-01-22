@@ -25,7 +25,3 @@ management:
 openapi:
   server:
     url: ${OPENAPI_SERVER_URL}
-
-springdoc:
-  swagger-ui:
-    url: /docs/auth/v3/api-docs
