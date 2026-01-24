@@ -55,3 +55,8 @@ management:
 logging:
   level:
     root: INFO
+
+springdoc:
+  swagger-ui:
+    url: /docs/purchase-sale/v3/api-docs
+    configUrl: /docs/purchase-sale/v3/api-docs/swagger-config
