@@ -73,5 +73,5 @@ logging:
 
 springdoc:
   swagger-ui:
-    url: /docs/client/v3/api-docs
-    configUrl: /docs/client/v3/api-docs/swagger-config
+    url: /docs/gateway/v3/api-docs
+    configUrl: /docs/gateway/v3/api-docs/swagger-config
