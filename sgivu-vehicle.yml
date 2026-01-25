@@ -65,3 +65,8 @@ logging:
     software:
       amazon:
         awssdk: info
+
+springdoc:
+  swagger-ui:
+    url: /docs/vehicle/v3/api-docs
+    configUrl: /docs/vehicle/v3/api-docs/swagger-config
