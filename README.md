@@ -1,4 +1,4 @@
-# SGIVU - sgivu-config-repo
+# sgivu-config-repo - SGIVU
 
 ## Descripción
 
@@ -9,32 +9,6 @@ Repositorio centralizado de los archivos YAML que el Spring Cloud Config Server 
 - Fuente de verdad para `sgivu-config`, el Config Server.
 - Permite que `sgivu-docker-compose` y despliegues en EC2 obtengan configuraciones coherentes para cada servicio.
 - Separa la lógica de negocio del código de configuración por entorno (`default`, `dev`, `prod`).
-
-## Estructura del Repositorio
-
-```text
-├── sgivu-auth.yml
-├── sgivu-auth-dev.yml
-├── sgivu-auth-prod.yml
-├── sgivu-client.yml
-├── sgivu-client-dev.yml
-├── sgivu-client-prod.yml
-├── sgivu-discovery.yml
-├── sgivu-discovery-dev.yml
-├── sgivu-discovery-prod.yml
-├── sgivu-gateway.yml
-├── sgivu-gateway-dev.yml
-├── sgivu-gateway-prod.yml
-├── sgivu-purchase-sale.yml
-├── sgivu-purchase-sale-dev.yml
-├── sgivu-purchase-sale-prod.yml
-├── sgivu-user.yml
-├── sgivu-user-dev.yml
-├── sgivu-user-prod.yml
-├── sgivu-vehicle.yml
-├── sgivu-vehicle-dev.yml
-└── sgivu-vehicle-prod.yml
-```
 
 Cada archivo corresponde a la configuración de un microservicio y entorno específicos. Spring Cloud Config usa el nombre base (`{application}.yml`) para la configuración común y los sufijos (`-dev`, `-prod`) para resolver la configuración según el profile activo.
 
@@ -64,16 +38,8 @@ Si los servicios ya están levantados con `sgivu-docker-compose`, tras actualiza
 
 - Consumido por `sgivu-config`, que sirve propiedades al resto de microservicios.
 
-## Buenas Prácticas y Convenciones
+## Convenciones
 
 - Sincroniza puertos, URLs y credenciales entre entornos.
 - Documenta en PRs cambios que afecten comportamiento crítico.
 - Valida los YAML con `yamllint` antes de fusionar.
-
-## Diagramas
-
-- Arquitectura general: ../sgivu/docs/diagrams/01-system-architecture.puml
-
-## Autor
-
-- Steven Ricardo Quiñones (2025)
