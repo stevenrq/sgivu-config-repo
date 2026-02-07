@@ -1,6 +1,7 @@
 spring:
   session:
     store-type: redis
+    timeout: 1h
     redis:
       namespace: spring:session:sgivu-gateway
   data:
