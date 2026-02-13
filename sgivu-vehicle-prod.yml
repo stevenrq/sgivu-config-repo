@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_VEHICLE_DB_HOST}:${PROD_VEHICLE_DB_PORT}/${PROD_VEHICLE_DB_NAME}
+    username: ${PROD_VEHICLE_DB_USERNAME}
+    password: ${PROD_VEHICLE_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    clean-disabled: true
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus
+
+openapi:
+  server:
+    url: ${OPENAPI_SERVER_URL}
