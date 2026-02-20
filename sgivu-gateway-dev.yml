@@ -1,0 +1,16 @@
+angular-client:
+  url: ${DEV_ANGULAR_APP_URL}
+
+# Niveles de log para depuración del flujo de autenticación/autorización en desarrollo.
+# - security: trazabilidad de cadenas de filtros, authorization decisions, login/logout
+# - gateway.security / gateway.controller: logs detallados de token relay, sesión, revocación
+# - oauth2.client: interacciones con el auth server (token requests, refreshes)
+# - session: operaciones de Redis session (creación, acceso, expiración)
+logging:
+  level:
+    com.sgivu.gateway.security: DEBUG
+    com.sgivu.gateway.controller: DEBUG
+    com.sgivu.gateway.config: DEBUG
+    org.springframework.security.oauth2.client: DEBUG
+    org.springframework.security.web.server.authentication: DEBUG
+    org.springframework.session.web.server: DEBUG

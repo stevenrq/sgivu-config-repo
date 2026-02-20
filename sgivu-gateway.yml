@@ -1,0 +1,80 @@
+spring:
+  session:
+    store-type: redis
+    timeout: 1h
+    redis:
+      namespace: spring:session:sgivu-gateway
+  data:
+    redis:
+      host: ${REDIS_HOST:sgivu-redis}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD}
+  reactor:
+    context-propagation: auto
+  security:
+    oauth2:
+      client:
+        registration:
+          sgivu-gateway:
+            provider: sgivu-auth
+            client-id: sgivu-gateway
+            client-secret: ${SGIVU_GATEWAY_SECRET}
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - openid
+              - profile
+              - email
+              - phone
+              - address
+              - offline_access
+              - api
+              - read
+              - write
+        provider:
+          sgivu-auth:
+            issuer-uri: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
+
+services:
+  map:
+    sgivu-auth:
+      name: sgivu-auth
+      url: ${SGIVU_AUTH_URL:http://sgivu-auth:9000}
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: never
+  tracing:
+    sampling:
+      probability: 0.1
+  zipkin:
+    tracing:
+      endpoint: http://sgivu-zipkin:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+    com.sgivu.gateway.security: INFO
+    com.sgivu.gateway.controller: INFO
+
+springdoc:
+  swagger-ui:
+    url: /docs/gateway/v3/api-docs
+    configUrl: /docs/gateway/v3/api-docs/swagger-config

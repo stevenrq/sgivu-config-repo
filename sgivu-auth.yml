@@ -1,0 +1,78 @@
+spring:
+  jpa:
+    open-in-view: false
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: never
+      table-name: SPRING_SESSION
+      cleanup-cron: 0 */15 * * * *
+      flush-mode: on_save
+      save-mode: on_get_attribute
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
+    baseline-version: 0
+    validate-on-migrate: true
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://sgivu-discovery:8761/eureka}
+
+services:
+  map:
+    sgivu-user:
+      name: sgivu-user
+      url: ${SGIVU_USER_URL:http://sgivu-user:8081}
+
+issuer:
+  url: ${ISSUER_URL:http://sgivu-auth:9000}
+
+gateway-client:
+  url: ${SGIVU_GATEWAY_URL:http://sgivu-gateway:8080}
+  secret: ${SGIVU_GATEWAY_SECRET}
+
+server:
+  port: ${PORT:9000}
+  forward-headers-strategy: framework
+
+service:
+  internal:
+    secret-key: ${SERVICE_INTERNAL_SECRET_KEY}
+
+sgivu:
+  jwt:
+    keystore:
+      location: ${JWT_KEYSTORE_LOCATION}
+      password: ${JWT_KEYSTORE_PASSWORD}
+    key:
+      alias: ${JWT_KEY_ALIAS}
+      password: ${JWT_KEY_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: never
+  tracing:
+    sampling:
+      probability: 0.1
+  zipkin:
+    tracing:
+      endpoint: http://sgivu-zipkin:9411/api/v2/spans
+
+logging:
+  level:
+    root: INFO
+
+springdoc:
+  swagger-ui:
+    url: /docs/auth/v3/api-docs
+    configUrl: /docs/auth/v3/api-docs/swagger-config

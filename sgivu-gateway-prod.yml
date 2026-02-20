@@ -1,0 +1,6 @@
+angular-client:
+  url: ${PROD_ANGULAR_APP_URL}
+
+openapi:
+  server:
+    url: ${OPENAPI_SERVER_URL}

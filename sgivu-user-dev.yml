@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DEV_USER_DB_HOST:host.docker.internal}:${DEV_USER_DB_PORT:5432}/${DEV_USER_DB_NAME}
+    username: ${DEV_USER_DB_USERNAME}
+    password: ${DEV_USER_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    locations: classpath:db/migration, classpath:db/seed
+    baseline-on-migrate: true
+    clean-disabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
