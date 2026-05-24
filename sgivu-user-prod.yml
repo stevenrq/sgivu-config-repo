@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PROD_USER_DB_HOST}:${PROD_USER_DB_PORT}/${PROD_USER_DB_NAME}
+    username: ${PROD_USER_DB_USERNAME}
+    password: ${PROD_USER_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 3000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_batch_fetch_size: 50
+        jdbc.batch_size: 30
+        order_inserts: true
+        order_updates: true
+  flyway:
+    clean-disabled: true
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain,text/css,application/javascript
+    min-response-size: 1024
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, caches
+
+openapi:
+  server:
+    url: ${OPENAPI_SERVER_URL}

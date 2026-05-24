@@ -1,0 +1,13 @@
+spring:
+  data:
+    redis:
+      host: ${PROD_REDIS_HOST}
+      port: ${PROD_REDIS_PORT}
+      password: ${PROD_REDIS_PASSWORD}
+
+angular-client:
+  url: ${PROD_ANGULAR_APP_URL}
+
+openapi:
+  server:
+    url: ${OPENAPI_SERVER_URL}
